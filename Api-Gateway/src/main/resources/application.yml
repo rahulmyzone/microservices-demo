@@ -1,0 +1,18 @@
+server:
+  port: 9082
+  
+eureka:  instance:    appname: api-gateway
+    hostname: locahost
+    
+spring:  cloud:    gateway:      routes:      - id: user-service
+        uri: lb://user-service
+        predicates:        - Path=/user/**
+      - id: contact-service
+        uri: lb://contact-service
+        predicates:        - Path=/contact/**
+      - id: post-service
+        uri: lb://post-service
+        predicates:        - Path=/posts/**
+      - id: comment-service
+        uri: lb://comment-service
+        predicates:        - Path=/comments/**
